@@ -1,5 +1,4 @@
 <template>
-<div>
 
 <!-- 主体内容 -->
 <div class="mb-5 my_bg3color">
@@ -86,11 +85,21 @@
   </div>
 </div>
 
-</div>
 </template>
 
 <script>
-
+export default {
+    data(){
+      return {
+        kwords:""
+      }
+    },
+    methods:{
+      search(){
+        this.$router.push("/products/"+this.kwords);
+      }
+    }
+  }
 </script>
 
 <style scoped>

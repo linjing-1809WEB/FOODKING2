@@ -91,10 +91,21 @@
 </template>
 
 <script>
-
+export default {
+    data(){
+      return {
+        kwords:""
+      }
+    },
+    methods:{
+      search(){
+        this.$router.push("/products/"+this.kwords);
+      }
+    }
+  }
 </script>
 
-<style>
+<style scoped>
 .my_wh{
     width:30%;
     height:55%;

@@ -1,6 +1,4 @@
 <template>
-<div>
-
 
 <!-- 主体内容 -->
 <div class="row my_bg3color mb-5">
@@ -38,15 +36,24 @@
   </div>
 </div>
 
-
-</div>
 </template>
 
 <script>
-
+export default {
+    data(){
+      return {
+        kwords:""
+      }
+    },
+    methods:{
+      search(){
+        this.$router.push("/products/"+this.kwords);
+      }
+    }
+  }
 </script>
 
-<style>
+<style scoped>
 #mylb .carousel-indicators li{
     width: 1rem;
     height: 1rem;
