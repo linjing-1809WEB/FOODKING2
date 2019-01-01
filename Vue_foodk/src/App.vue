@@ -51,6 +51,6 @@ export default {
 	#my_martop{margin-top:0;}
 }
 @media screen and (max-width:1000px){
-	#my_martop{margin-top:55px;}
+	#my_martop{margin-top:50px;}
 }
 </style>
