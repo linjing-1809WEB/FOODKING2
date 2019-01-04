@@ -19,7 +19,7 @@
         </div>
         <!-- 第一层选项 -->
         <div class="col-9 p-1">
-        <ul class="list-unstyled d-flex justify-content-end my_smallsize text-white">
+        <ul class="list-unstyled d-flex justify-content-end  my_smallsize text-white w-100">
             <li>语言/Language：
             <select name="dp" class="my_select">
                 <option value="1">繁体中文</option>
@@ -28,7 +28,7 @@
             </select>
             </li>
             <li><a class="text-white" href="javascript:;"> <b>|</b> 粉丝专页 </a></li>
-            <li><a class="text-white" href="javascript:;"> <b>|</b> 购物车(0) </a></li>
+            <li><a class="text-white" href="javascript:;"> <b>|</b>购物车(0) </a></li>
             <li><a class="text-white" href="login.html"> <b>|</b>  会员中心 </a></li>
         </ul>
         </div>
@@ -48,8 +48,8 @@
             </router-link>
             </li>
             <li class="nav-item text-right m-0">
-            <router-link class="nav-link  text-white p-0" to="Shop">线上购物
-                <div class="my_font ">Online shop</div>
+            <router-link class="nav-link  text-white p-0" to="plist?fid=0">线上购物
+                <div class="my_font">Online shop</div>
             </router-link>
             </li>
             <li class="nav-item text-right m-0">
@@ -103,7 +103,7 @@
     padding:2.2px 0;
     width:26px;height:26px;
     display:inline-block;
-    font-size:12px;
+    font-size:0.9rem;
     background:gray;
 }
 .my_select{
