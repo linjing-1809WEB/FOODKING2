@@ -8,7 +8,6 @@ import Index from './views/Index'
 import About from './views/About'
 import News from './views/News'
 import Join from './views/Join'
-import Detail from './views/Detail'
 import Member from './views/Member'
 import NotFound from './views/NotFound'
 
@@ -26,7 +25,6 @@ export default new Router({
     {path:'/news',component:News},
     {path:'/join',component:Join},
     {path:'/plist',component:ProLeft},
-    {path:'/detail',component:Detail},
     {path:'/member',component:Member},
     {path:'/*',component:NotFound}
   ]

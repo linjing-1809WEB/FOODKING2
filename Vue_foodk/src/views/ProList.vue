@@ -6,55 +6,70 @@
   <div class="row">
   <!--card-->
     <div class="col-4" v-for="item in list" :key="item.pid">
-        <div class="card">
-          <a href="#"><img class="w-100 my_img1" :src="item.md"></a>
-          <div class="miansha"></div>
-          <div class="myhovers">More Detail</div>
-        </div>
-        <div class="text-center mt-1 mb-4">
-          <a class="productName" href="#">{{item.subname}}</a>
-          <h5 class="productPrice pt-1">NT 450</h5>
-        </div>
+      <div class="card">
+        <a href="javascript:;"><img class="w-100 my_img1" :src="item.md"></a>
+        <div class="miansha"></div>
+        <div class="myhovers">More Detail</div>
+      </div>
+      <div class="text-center mt-1 mb-4">
+        <a class="productName" href="javascript:;">{{item.subname}}</a>
+        <h5 class="productPrice pt-1">NT 450</h5>
+      </div>
     </div>
   </div>
   <!-- 分页标签 -->
-  <!-- <div>
-    <ul class="d-flex mb-0 justify-content-center">
-      <li class="page-item" :class="{disabled:prevDisabled}">
-        <a class="page-link bg-transparent" href="#" @click.prevent="prev()">上一页</a>
-      </li>
-      <li v-for="i of pageCount" :key="i.lid" class="page-item" :class="i-1==pno?'active':''">
-        <a class="page-link" :class="i-1==pno?'border':'bg-transparent'" href="javascript:;" @click="go(i-1)">{{i}}</a>
-      </li>
-      <li class="page-item" :class="{disabled:nextDisabled}">
-        <a class="page-link bg-transparent" href="javascript:;" @click="next()">下一页</a>
-      </li>
-    </ul>
-  </div> -->
+  <h6 class="mb-3 p-2 text-muted small border">
+    <nav aria-label="Page navigation example">
+      <ul class="pagination mb-0 justify-content-center">
+        <li class="page-item" :class="{disabled:prevDisabled}">
+          <a class="page-link bg-transparent" href="#" @click.prevent="prev()">上一页</a>
+        </li>
+        <li class="page-item" v-for="i of pagecount" :key="i.pid" :class="i==pno?'active':''">
+          <a class="page-link" :class="i==pno?'border':'bg-transparent'" href="javascript:;" @click="go(i)">{{i}}</a>
+        </li>
+        <li class="page-item" :class="{disabled:nextDisabled}">
+          <a class="page-link bg-transparent" href="javascript:;" @click="next()">下一页</a>
+        </li>
+      </ul>
+    </nav>
+  </h6>
 </div>
 </template>
 
 <script>
   export default {
-    props:["title","list"],//接受父组件传输的数据！
+    props:["title","list","pagecount"],//接收父组件传输的数据！
     data(){return {
-       list:[],
-       title:"热销商品",
        pageIndex:1,
-       pageSize:18
+       pageSize:18,
+       prevDisabled:true,
+       nextDisabled:true,
+       pno:1,
+       kwords:""
     }},
     created(){
-      this.getProduct();
+
     },
     methods:{
-      getProduct(){
-        var fid=this.$route.query.fid;
-        var url="http://127.0.0.1:3000/getProduct?fid="+fid;
-        this.axios.get(url).then(res=>{
-          this.list=res.data.data;
-          this.title=res.data.data[0].fname;
-        });
-      }
+      //向父组件传递一个参数pno 和一个处理事件
+      prev(){
+      this.pno--;
+      this.prevDisabled=this.pno==1;
+      this.nextDisabled=this.pno==this.pagecount;
+      this.$emit("ProLoad",this.pno);
+      },
+      next(){
+        this.pno++;
+        this.prevDisabled=this.pno==1;
+        this.nextDisabled=this.pno==this.pagecount;
+        this.$emit("ProLoad",this.pno);
+      },
+      go(pno){
+        this.pno=pno;
+        this.prevDisabled=this.pno==1;
+        this.nextDisabled=this.pno==this.pagecount;
+        this.$emit("ProLoad",this.pno);
+      },
     }
   }
 </script>

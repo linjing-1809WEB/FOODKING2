@@ -9,14 +9,14 @@
         <button :class="{'d-none':secondHide}" @click="secbtn()"><span class="mui-icon mui-icon-undo"></span></button>
       </div>
       <div class="col-11">
-        <router-link to="Index"><img src="../img/index_base/logo_rwd.png"></router-link>
+        <router-link to="Index"><img :src="img"></router-link>
       </div>
     </div>
   </div>
 <!-- 搜索框 -->
   <div class="my_header_02">
-    <input class="my_input" placeholder="产品搜索">
-    <router-link class="my_suba" to="Product">GO</router-link>
+    <input class="my_input" placeholder="产品搜索" v-model="kwords" @keyup.13="search">
+    <router-link class="my_suba" to="/plist" @click="search">GO</router-link>
   </div>
 <!-- 下拉选项 -->
   <div id="target" :class="{'d-none':navHide}">
@@ -24,7 +24,7 @@
       <li class="list-group-item"><router-link class="text-white" to="About">关于美味王</router-link></li>
       <li class="list-group-item"><router-link class="text-white" to="News">最新消息</router-link></li>
       <li class="list-group-item"><router-link class="text-white" to="News">会员中心</router-link></li>
-      <li class="list-group-item"><router-link class="text-white" to="Shop">线上购物</router-link></li>
+      <li class="list-group-item"><router-link class="text-white" to="/plist?fid=13">线上购物</router-link></li>
       <li class="list-group-item"><router-link class="text-white" to="Join">加盟专区</router-link></li>
       <li class="list-group-item"><router-link class="text-white" to="Javascript:;">联系我们</router-link></li>
       <li class="list-group-item"><router-link class="text-white" to="Javascript:;">隐私权政策</router-link></li>
@@ -37,12 +37,26 @@
   export default {
     data(){
       return {
+        kwords:"",
+        img:"",
         navHide:true,
         firstHide:false,
         secondHide:true
       }
     },
+    created(){
+      this.getIamge();
+    },
     methods:{
+      getIamge(){
+        var url="http://127.0.0.1:3000/getImage";
+        this.axios.get(url).then(res=>{
+          this.img=res.data[3].img_url;
+        })
+      },
+      search(){
+        this.$router.push("/plist?kwords="+this.kwords);
+      },
       firbtn(){
         this.navHide=false;
         this.firstHide=true;

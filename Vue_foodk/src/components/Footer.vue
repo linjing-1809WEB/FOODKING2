@@ -46,11 +46,11 @@
       </div>
       <div class="col-3 my_smallsize">
         <div class="mt-4 mb-2">
-            <img src="../img/index_base/tel.jpg">&nbsp;&nbsp;&nbsp;<b>客服专线 0592-6617138</b>
+            <img :src="img3">&nbsp;&nbsp;&nbsp;<b>客服专线 0592-6617138</b>
         </div>
         <div class="d-flex">
-          <img class="mr-2" src="../img/index_base/Iso.png">
-          <img src="../img/index_base/IAF.png">
+          <img class="mr-2" :src="img1">
+          <img :src="img2">
         </div>
       </div>
     </div>
@@ -63,16 +63,25 @@
 
 <script>
 export default {
-data(){
-    return {
-    kwords:""
+  data(){return {
+    img1:"",
+    img2:"",
+    img3:""
     }
-},
-methods:{
-    search(){
-    this.$router.push("/products/"+this.kwords);
+  },
+  created(){
+    this.getIamge();
+  },
+  methods:{
+    getIamge(){
+      var url="http://127.0.0.1:3000/getImage";
+      this.axios.get(url).then(res=>{
+        this.img1=res.data[4].img_url;
+        this.img2=res.data[5].img_url;
+        this.img3=res.data[6].img_url;
+      })
     }
-}
+  }
 }
 </script>
 

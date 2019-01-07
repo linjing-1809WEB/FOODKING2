@@ -25,16 +25,7 @@
 
 <script>
   export default {
-    data(){
-      return {
-        kwords:""
-      }
-    },
-    methods:{
-      search(){
-        this.$router.push("/products/"+this.kwords);
-      }
-    }
+   
   }
 </script>
 

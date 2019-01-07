@@ -1,5 +1,5 @@
 <template>
-<div class="main row my_bg3color mb-5">
+<div class="main row mb-5">
   <!-- 左侧 -->
   <div class="col-lg-2 d-lg-inline-block d-sm-none">
     <div class="text-center font-weight-bold mt-2">产品分类</div> 
@@ -7,125 +7,18 @@
     <!-- 选项 -->
     <ul id="p1" class="list-unstyled my_left pl-3">
       <li>
-        <a href="javascript:;" class="active"  @click="jump(n0)">热销商品</a>
+        <a href="#hot" data-toggle="collapse" @click="jump" class="active">热销商品</a>
+        <div id="hot" class="collapse" data-parent="#p1"></div>
       </li>
-      <li>
+      <li v-for="value in group" :key="value.fid">
         <div>
-          <a href="#sub_zha" data-toggle="collapse" @click="jump(n1)">炸粉类</a>
+          <a :href="`#${value.id}`" data-toggle="collapse" @click="jump" :data-id="value.fid">
+            {{value.fname}}
+          </a>
         </div>
-        <div id="sub_zha" class="collapse" data-parent="#p1">
+        <div :id="value.id" class="collapse" data-parent="#p1">
           <ul class="list-unstyled ml-3 productPrice">
-            <li v-for="(item) in list" :key="item.pid"><a href="javascript:;">{{item.subname}}</a></li>
-          </ul>
-        </div>
-      </li>
-      <li>
-        <div>
-          <a href="#sub_yan" data-toggle="collapse" @click="jump(n2)">腌制粉</a>
-        </div>
-        <div id="sub_yan" class="collapse" data-parent="#p1">
-          <ul class="list-unstyled ml-3 productPrice">
-            <li v-for="(item) in list" :key="item.pid"><a href="javascript:;">{{item.subname}}</a></li>
-          </ul>
-        </div>
-      </li>
-      <li>
-        <div>
-          <a href="#sub_sa" data-toggle="collapse" @click="jump(n3)">撒料类</a>
-        </div>
-        <div id="sub_sa" class="collapse" data-parent="#p1">
-          <ul class="list-unstyled ml-3 productPrice">
-            <li v-for="(item) in list" :key="item.pid"><a href="javascript:;">{{item.subname}}</a></li>
-          </ul>
-        </div>
-      </li>
-      <li>
-        <div>
-          <a href="#sub_jiang" data-toggle="collapse" @click="jump(n4)">酱粉类</a>
-        </div>
-        <div id="sub_jiang" class="collapse" data-parent="#p1">
-          <ul class="list-unstyled ml-3 productPrice">
-            <li v-for="(item) in list" :key="item.pid"><a href="javascript:;">{{item.subname}}</a></li>
-          </ul>
-        </div>
-      </li>
-      <li>
-        <div>
-          <a href="#sub_tang" data-toggle="collapse" @click="jump(n5)">汤头粉</a>
-        </div>
-        <div id="sub_tang" class="collapse" data-parent="#p1">
-          <ul class="list-unstyled ml-3 productPrice">
-            <li v-for="(item) in list" :key="item.pid"><a href="javascript:;">{{item.subname}}</a></li>
-          </ul>
-        </div>
-      </li>
-      <li>
-        <div>
-          <a href="#sub_leng" data-toggle="collapse" @click="jump(n6)">冷饮类</a>
-        </div>
-        <div id="sub_leng" class="collapse" data-parent="#p1">
-          <ul class="list-unstyled ml-3 productPrice">
-            <li v-for="(item) in list" :key="item.pid"><a href="javascript:;">{{item.subname}}</a></li>
-          </ul>
-        </div>
-      </li>
-      <li>
-        <div>
-          <a href="#sub_la" data-toggle="collapse" @click="jump(n7)">辣椒粉</a>
-        </div>
-        <div id="sub_la" class="collapse" data-parent="#p1">
-          <ul class="list-unstyled ml-3 productPrice">
-            <li v-for="(item) in list" :key="item.pid"><a href="javascript:;">{{item.subname}}</a></li>
-          </ul>
-        </div>
-      </li>
-      <li>
-        <div>
-          <a href="#sub_hong" data-toggle="collapse" @click="jump(n8)">烘焙预拌粉</a>
-        </div>
-        <div id="sub_hong" class="collapse" data-parent="#p1">
-          <ul class="list-unstyled ml-3 productPrice">
-            <li v-for="(item) in list" :key="item.pid"><a href="javascript:;">{{item.subname}}</a></li>
-          </ul>
-        </div>
-      </li>
-      <li>
-        <div>
-          <a href="#sub_bian" data-toggle="collapse" @click="jump(n9)">便当简餐类</a>
-        </div>
-        <div id="sub_bian" class="collapse" data-parent="#p1">
-          <ul class="list-unstyled ml-3 productPrice">
-            <li v-for="(item) in list" :key="item.pid"><a href="javascript:;">{{item.subname}}</a></li>
-          </ul>
-        </div>
-      </li>
-      <li>
-        <div>
-          <a href="#sub_xiao" data-toggle="collapse" @click="jump(n10)">小吃类</a>
-        </div>
-        <div id="sub_xiao" class="collapse" data-parent="#p1">
-          <ul class="list-unstyled ml-3 productPrice">
-            <li v-for="(item) in list" :key="item.pid"><a href="javascript:;">{{item.subname}}</a></li>
-          </ul>
-        </div>
-      </li>
-      <li>
-        <div>
-          <a href="#sub_dan" data-toggle="collapse" @click="jump(n11)">单品类</a>
-        </div>
-        <div id="sub_dan" class="collapse" data-parent="#p1">
-          <ul class="list-unstyled ml-3 productPrice">
-            <li v-for="(item) in list" :key="item.pid"><a href="javascript:;">{{item.subname}}</a></li>
-          </ul>
-        </div>
-      </li>
-      <li>
-        <div>
-          <a href="#sub_she" data-toggle="collapse" @click="jump(n12)">设备器材</a>
-        </div>
-        <div id="sub_she" class="collapse" data-parent="#p1">
-          <ul class="list-unstyled ml-3 productPrice">
-            <li v-for="(item) in list" :key="item.pid"><a href="javascript:;">{{item.subname}}</a></li>
+            <li v-for="item in list" :key="item.pid"><a href="javascript:;">{{item.subname}}</a></li>
           </ul>
         </div>
       </li>
@@ -134,45 +27,94 @@
 
   <!-- 右侧 -->
   <div class="col-lg-10 col-sm-12">
-    <!-- 占位 -->
-    <right-box :title="title" :list="list"></right-box>
-  
+    <!-- 子组件占位 -->
+    <list-box :class="{'d-none':listHide}" :title="title" :pagecount="pagecount" :list="list" @ProLoad="ProLoad"></list-box>
+    <detail-box :class="{'d-none':detailHide}"></detail-box>
   </div>
 </div>
 </template>
 
 <script>
 import ProList from '../views/ProList.vue'
+import ProDetail from '../views/ProDetail.vue'
 export default {
   components:{
-    "right-box":ProList
+    "list-box":ProList,
+    "detail-box":ProDetail,
   },
+  props:["kwords"],//header-->app-->当前
   data(){return {
+    listHide:false,
+    detailHide:true,
     title:"热销商品",
+    pagecount:1,
     list:[],
-    n0:0,
-    n1:1,
-    n2:2,
-    n3:3,
-    n4:4,
-    n5:5,
-    n6:6,
-    n7:7,
-    n8:8,
-    n9:9,
-    n10:10,
-    n11:11,
-    n12:12,
+    group:[],
+    n1:13
   }},
+  created(){
+    this.getfname();
+    this.ProLoad();
+    console.log("主体变了吗？"+this.kwords);
+  },
   methods:{
-   jump(n){
+    //header的搜索栏中push传递一个关键字kwords,按关键字查询！将数据传给子组件ProList.vue
+    //搜索需要传两个参数！一是关键字kwords，二是页码pno
+
+    // 页面加载时一开始读取地址栏fid,header传参kwords,proList传参pno 以获取右侧内容   并且实现当前页面变化
+    ProLoad(pno){
+      //现在的问题是  app的更新的kwords并没有过来  解决是监听kwords  不是$route
+      var fid=this.$route.query.fid;//地址栏可直接读取
+      var kwords=this.kwords;//兄弟组件传参  在当前页/plist下不能获取到kwords  怎么办呢？监听！！
+      // var kwords=this.$route.query.kwords;  为什么kwords读取不了地址栏的关键字？==undefined
+      var pno=pno;//子组件转过来的
+      console.log(kwords);
+      var url="http://127.0.0.1:3000/getProduct";
+      this.axios.get(url,{params:{fid,pno,kwords}}).then(res=>{
+        this.list=res.data.data;
+        this.pagecount=res.data.pagecount;
+        if(fid===undefined){
+          this.title=`产品搜索：${this.kwords} 结果`;
+          if(this.kwords==undefined){
+            this.title=`产品搜索： 结果`;
+          }
+        }else{this.title=res.data.data[0].fname;}
+        console.log(this.list);
+      });
+    },
+    // 点击时获取类标号fid以展开折叠 获取副标题和右侧内容！用判断使热销商品也能获取数据！
+    jump(e){
+      var n;
+      if(e.target.dataset.id){n=e.target.dataset.id;}
+      else{n=this.n1;}
       this.$router.push("plist?fid="+n);
       var url="http://127.0.0.1:3000/getProduct?fid="+n;
       this.axios.get(url).then(res=>{
         this.list=res.data.data;
+        this.pagecount=res.data.pagecount;//请求的过来的数据变更慢一步，页面先加载的是之前的的数据
         this.title=res.data.data[0].fname;
       });
-   },
+    },
+    // 页面加载时一开始便获取左侧主标题
+    getfname(){
+      var url="http://127.0.0.1:3000/getFname";
+      this.axios.get(url).then(res=>{
+        this.group=res.data;
+      })
+    },
+  },
+  watch:{
+    kwords(){
+      this.kwords=this.$route.query.kwords;//这个关键字是输入框的值 
+      this.ProLoad();
+    },
+    // "$route":{
+    //   handlder(to){
+    //   this.fid=to.params.fid;
+    //   console.log(this.fid)
+    //   this.ProLoad();}
+    // },为什么监听不了路由呢？这个是个大问题！
+    immediate:true
   }
 }
 </script>
